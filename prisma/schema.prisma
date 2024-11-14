@@ -1,0 +1,33 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Restaurant {
+  restaurant_id    Int   @id @default(autoincrement())
+  category         String?
+  address          String?
+  status           Int?
+  schedule         String?
+  name             String?
+  description      String?
+  image_url        String?
+  rating           Float?
+}
+
+model Dish {
+  dish_id            Int   @id @default(autoincrement())
+  description        String?
+  availability       String?
+  name               String?
+  price              Int?
+  category           String?
+  available          Boolean?
+  image_url          String?
+  promotional_price  Float?
+  restaurant_id  Int?
+}
