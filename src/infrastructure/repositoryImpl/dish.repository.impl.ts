@@ -9,7 +9,7 @@ export class DishRepositoryImpl implements DishRepository {
     return this.data_source.getDishes();
   }
 
-  findById(id: number): Promise<DishEntity> {
+  findById(id: number): Promise<DishEntity[]> {
     return this.data_source.findById(id);
   }
 

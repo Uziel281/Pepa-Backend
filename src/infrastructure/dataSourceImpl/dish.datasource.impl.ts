@@ -9,8 +9,10 @@ export class DishDataSourceImpl implements DishDataSource {
       where: { available: true },
     });
   }
-  async findById(id: number): Promise<DishEntity> {
-    const dish = await this.prisma.dish.findUnique({ where: { dish_id: id } });
+  async findById(id: number): Promise<DishEntity[]> {
+    const dish = await this.prisma.dish.findMany({
+      where: { restaurant_id: id, available: true },
+    });
     if (!dish) {
       throw new Error("Method not implemented.");
     }
@@ -19,7 +21,7 @@ export class DishDataSourceImpl implements DishDataSource {
   async logicalDeleteById(id: number): Promise<DishEntity> {
     const dish = await this.prisma.dish.update({
       where: { dish_id: id },
-      data: { available: false }, // Cambia el estado disponible a falso
+      data: { available: false },
     });
     return dish;
   }

@@ -24,7 +24,7 @@ export class RestaurantDataSourceImpl implements RestaurantDataSource {
   async logicalDeleteById(id: number): Promise<RestaurantEntity> {
     const restaurant = await this.prisma.restaurant.update({
       where: { restaurant_id: id },
-      data: { status: 0 }, // Cambia el estado a un valor que indique que está inactivo
+      data: { status: 0 },
     });
     return restaurant;
   }
